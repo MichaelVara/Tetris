@@ -1,6 +1,6 @@
 ﻿namespace Tetris
 {
-    partial class Jeu
+    partial class frmJeu
     {
         /// <summary>
         /// Required designer variable.
@@ -32,26 +32,26 @@
             this.lblLines = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ptbNextZ = new System.Windows.Forms.PictureBox();
+            this.ptbNextT = new System.Windows.Forms.PictureBox();
+            this.ptbNextS = new System.Windows.Forms.PictureBox();
+            this.ptbNextL2 = new System.Windows.Forms.PictureBox();
+            this.ptbNextL1 = new System.Windows.Forms.PictureBox();
+            this.ptbNextCube = new System.Windows.Forms.PictureBox();
             this.ptbNextBaton = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ptbNextCube = new System.Windows.Forms.PictureBox();
-            this.ptbNextL1 = new System.Windows.Forms.PictureBox();
-            this.ptbNextL2 = new System.Windows.Forms.PictureBox();
-            this.ptbNextS = new System.Windows.Forms.PictureBox();
-            this.ptbNextT = new System.Windows.Forms.PictureBox();
-            this.ptbNextZ = new System.Windows.Forms.PictureBox();
             this.lblLevelStat = new System.Windows.Forms.Label();
             this.lblLinesStat = new System.Windows.Forms.Label();
             this.lblScoreStat = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextBaton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLevel
@@ -109,6 +109,72 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NEXT";
             // 
+            // ptbNextZ
+            // 
+            this.ptbNextZ.Image = global::Tetris.Properties.Resources.TetrisBlocksZEntier;
+            this.ptbNextZ.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextZ.Name = "ptbNextZ";
+            this.ptbNextZ.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextZ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextZ.TabIndex = 5;
+            this.ptbNextZ.TabStop = false;
+            this.ptbNextZ.Visible = false;
+            // 
+            // ptbNextT
+            // 
+            this.ptbNextT.Image = global::Tetris.Properties.Resources.TetrisBlocksTEntier;
+            this.ptbNextT.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextT.Name = "ptbNextT";
+            this.ptbNextT.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextT.TabIndex = 5;
+            this.ptbNextT.TabStop = false;
+            this.ptbNextT.Visible = false;
+            // 
+            // ptbNextS
+            // 
+            this.ptbNextS.Image = global::Tetris.Properties.Resources.TetrisBlocksSEntier;
+            this.ptbNextS.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextS.Name = "ptbNextS";
+            this.ptbNextS.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextS.TabIndex = 5;
+            this.ptbNextS.TabStop = false;
+            this.ptbNextS.Visible = false;
+            // 
+            // ptbNextL2
+            // 
+            this.ptbNextL2.Image = global::Tetris.Properties.Resources.TetrisBlocksL2Entier;
+            this.ptbNextL2.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextL2.Name = "ptbNextL2";
+            this.ptbNextL2.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextL2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextL2.TabIndex = 5;
+            this.ptbNextL2.TabStop = false;
+            this.ptbNextL2.Visible = false;
+            // 
+            // ptbNextL1
+            // 
+            this.ptbNextL1.Image = global::Tetris.Properties.Resources.TetrisBlocksL1Entier;
+            this.ptbNextL1.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextL1.Name = "ptbNextL1";
+            this.ptbNextL1.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextL1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextL1.TabIndex = 5;
+            this.ptbNextL1.TabStop = false;
+            this.ptbNextL1.Visible = false;
+            // 
+            // ptbNextCube
+            // 
+            this.ptbNextCube.Image = global::Tetris.Properties.Resources.TetrisBlocksCubeEntier;
+            this.ptbNextCube.Location = new System.Drawing.Point(0, 28);
+            this.ptbNextCube.Name = "ptbNextCube";
+            this.ptbNextCube.Size = new System.Drawing.Size(239, 180);
+            this.ptbNextCube.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptbNextCube.TabIndex = 1;
+            this.ptbNextCube.TabStop = false;
+            this.ptbNextCube.Visible = false;
+            // 
             // ptbNextBaton
             // 
             this.ptbNextBaton.Image = global::Tetris.Properties.Resources.TetrisBlocksBatonEntier;
@@ -130,72 +196,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // ptbNextCube
-            // 
-            this.ptbNextCube.Image = global::Tetris.Properties.Resources.TetrisBlocksCubeEntier;
-            this.ptbNextCube.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextCube.Name = "ptbNextCube";
-            this.ptbNextCube.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextCube.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextCube.TabIndex = 1;
-            this.ptbNextCube.TabStop = false;
-            this.ptbNextCube.Visible = false;
-            // 
-            // ptbNextL1
-            // 
-            this.ptbNextL1.Image = global::Tetris.Properties.Resources.TetrisBlocksL1Entier;
-            this.ptbNextL1.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextL1.Name = "ptbNextL1";
-            this.ptbNextL1.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextL1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextL1.TabIndex = 5;
-            this.ptbNextL1.TabStop = false;
-            this.ptbNextL1.Visible = false;
-            // 
-            // ptbNextL2
-            // 
-            this.ptbNextL2.Image = global::Tetris.Properties.Resources.TetrisBlocksL2Entier;
-            this.ptbNextL2.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextL2.Name = "ptbNextL2";
-            this.ptbNextL2.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextL2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextL2.TabIndex = 5;
-            this.ptbNextL2.TabStop = false;
-            this.ptbNextL2.Visible = false;
-            // 
-            // ptbNextS
-            // 
-            this.ptbNextS.Image = global::Tetris.Properties.Resources.TetrisBlocksSEntier;
-            this.ptbNextS.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextS.Name = "ptbNextS";
-            this.ptbNextS.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextS.TabIndex = 5;
-            this.ptbNextS.TabStop = false;
-            this.ptbNextS.Visible = false;
-            // 
-            // ptbNextT
-            // 
-            this.ptbNextT.Image = global::Tetris.Properties.Resources.TetrisBlocksTEntier;
-            this.ptbNextT.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextT.Name = "ptbNextT";
-            this.ptbNextT.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextT.TabIndex = 5;
-            this.ptbNextT.TabStop = false;
-            this.ptbNextT.Visible = false;
-            // 
-            // ptbNextZ
-            // 
-            this.ptbNextZ.Image = global::Tetris.Properties.Resources.TetrisBlocksZEntier;
-            this.ptbNextZ.Location = new System.Drawing.Point(0, 28);
-            this.ptbNextZ.Name = "ptbNextZ";
-            this.ptbNextZ.Size = new System.Drawing.Size(239, 180);
-            this.ptbNextZ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptbNextZ.TabIndex = 5;
-            this.ptbNextZ.TabStop = false;
-            this.ptbNextZ.Visible = false;
             // 
             // lblLevelStat
             // 
@@ -233,7 +233,7 @@
             this.lblScoreStat.TabIndex = 7;
             this.lblScoreStat.Text = "0";
             // 
-            // Jeu
+            // frmJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -247,17 +247,21 @@
             this.Controls.Add(this.lblLines);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Jeu";
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(943, 926);
+            this.MinimumSize = new System.Drawing.Size(943, 926);
+            this.Name = "frmJeu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jeu";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextBaton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextL2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

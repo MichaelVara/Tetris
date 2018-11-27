@@ -70,6 +70,7 @@
             this.MaximumSize = new System.Drawing.Size(1037, 716);
             this.MinimumSize = new System.Drawing.Size(1037, 716);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

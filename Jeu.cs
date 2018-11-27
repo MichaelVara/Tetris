@@ -10,12 +10,25 @@ using System.Windows.Forms;
 
 namespace Tetris
 {
-    public partial class Jeu : Form
+    public partial class frmJeu : Form
     {
-        public Jeu()
+        #region private attributes
+        #endregion private attributes
+
+        #region constructors
+        public frmJeu()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
+        #endregion constructors
+
+        #region accessors and mutators
+        #endregion accessors and mutators
+
+        #region public methods
+        #endregion public methods
+
+        #region private methods
+        #endregion private methods
     }
 }
