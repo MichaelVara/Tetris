@@ -73,9 +73,29 @@ namespace Tetris.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksBatonEntier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksBatonEntier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TetrisBlocksCube {
             get {
                 object obj = ResourceManager.GetObject("TetrisBlocksCube", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksCubeEntier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksCubeEntier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +113,29 @@ namespace Tetris.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksL1Entier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksL1Entier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TetrisBlocksL2 {
             get {
                 object obj = ResourceManager.GetObject("TetrisBlocksL2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksL2Entier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksL2Entier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +153,39 @@ namespace Tetris.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksMur {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksMur", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksMurCadre {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksMurCadre", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TetrisBlocksS {
             get {
                 object obj = ResourceManager.GetObject("TetrisBlocksS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksSEntier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksSEntier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +203,29 @@ namespace Tetris.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksTEntier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksTEntier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TetrisBlocksZ {
             get {
                 object obj = ResourceManager.GetObject("TetrisBlocksZ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksZEntier {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksZEntier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

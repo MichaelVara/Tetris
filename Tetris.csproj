@@ -52,10 +52,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Jeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Jeu.Designer.cs">
+      <DependentUpon>Jeu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Jeu.resx">
+      <DependentUpon>Jeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,7 +89,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksMur.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TetrisBlocksLettres.png" />
   </ItemGroup>
@@ -104,6 +115,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TetrisBlocksZ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksMurCadre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksBatonEntier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksCubeEntier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksL1Entier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksL2Entier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksSEntier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksTEntier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisBlocksZEntier.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

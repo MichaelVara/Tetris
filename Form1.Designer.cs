@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TxtPlay = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Tetris.Properties.Resources.TetrisBlocksLettres;
-            this.pictureBox1.Location = new System.Drawing.Point(-7, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1035, 180);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // TxtPlay
             // 
@@ -57,6 +46,17 @@
             this.TxtPlay.Click += new System.EventHandler(this.TxtPlay_Click);
             this.TxtPlay.MouseEnter += new System.EventHandler(this.TxtPlay_MouseEnter);
             this.TxtPlay.MouseLeave += new System.EventHandler(this.TxtPlay_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Tetris.Properties.Resources.TetrisBlocksLettres;
+            this.pictureBox1.Location = new System.Drawing.Point(-7, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1035, 180);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Menu
             // 

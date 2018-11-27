@@ -30,7 +30,9 @@ namespace Tetris
 
         private void TxtPlay_Click(object sender, EventArgs e)
         {
+            Jeu frmGame = new Jeu();
 
+            frmGame.Show();
         }
     }
 }
