@@ -13,6 +13,7 @@ namespace Tetris
     public partial class frmJeu : Form
     {
         #region private attributes
+        //Énumération des différentes formes
         private enum _forme
         {
             baton,
@@ -23,7 +24,9 @@ namespace Tetris
             t,
             z
         }
+
         private string _nextForme = null;
+        private string _formeActuel = null;
         #endregion private attributes
 
         #region constructors
@@ -31,7 +34,16 @@ namespace Tetris
         {
             InitializeComponent();
 
+            //Désigne la prochaine forme
             _nextForme = NextForme();
+
+            //Pour que la forme actuelle soit différente de la prochaine
+            do
+            {
+                //Random parmis toutes les formes dispo
+                _forme f = (_forme)(new Random()).Next(0, 7);
+                _formeActuel = f.ToString();
+            } while (_formeActuel == _nextForme);
         }
         #endregion constructors
 
@@ -44,8 +56,10 @@ namespace Tetris
         #region private methods
         private string NextForme()
         {
+            //Random parmis toutes les formes dispo
             _forme f = (_forme)(new Random()).Next(0, 7);
 
+            //Affichage de la prochaine forme dans la case "Next"
             switch(f)
             {
                 case _forme.baton:
