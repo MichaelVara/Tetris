@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Tetris
 {
@@ -26,7 +27,9 @@ namespace Tetris
         }
 
         private string _nextForme = null;
-        private string _formeActuel = null;
+
+        private GestionForme _gestionforme;
+        private PictureBox[,] _map;
         #endregion private attributes
 
         #region constructors
@@ -34,16 +37,31 @@ namespace Tetris
         {
             InitializeComponent();
 
+            //Réinitialisation des variables
+            _nextForme = null;
+            _map = new PictureBox[20, 10];
+
+
             //Désigne la prochaine forme
             _nextForme = NextForme();
+
+            string formeRandom;
 
             //Pour que la forme actuelle soit différente de la prochaine
             do
             {
                 //Random parmis toutes les formes dispo
                 _forme f = (_forme)(new Random()).Next(0, 7);
-                _formeActuel = f.ToString();
-            } while (_formeActuel == _nextForme);
+                formeRandom = f.ToString();
+            } while (formeRandom == _nextForme);
+
+            _gestionforme = new GestionForme();
+
+            //Ajout de la forme actuelle
+            _gestionforme.NouvelleForme("baton");
+
+            //Dessine la forme actuelle
+            DessinerForme();
         }
         #endregion constructors
 
@@ -92,6 +110,38 @@ namespace Tetris
             }
 
             return f.ToString();
+        }
+
+        private void DessinerForme()
+        {
+            int x;
+            int y;
+
+            //Pour chaque case de la map
+            for (y = 4; y < 24; y++)
+            {
+                for (x = 0; x < 10; x++)
+                {
+                    //S'il y a un bloc
+                    if (_gestionforme.map()[x,y] > 0)
+                    {
+                        _map[x, y - 4] = new PictureBox();
+                        switch (_gestionforme.map()[x,y])
+                        {
+                            //Baton
+                            case 1:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
+                                break;
+                        }
+                        //Initialisation des propriétés de l'image
+                        //_map[x, y - 4].Location = new Point(36 * x + 48, 36 * (y - 4) + 77);
+                        _map[x, y - 4].Location = new Point(48, 77);
+                        _map[x, y - 4].Size = new Size(36, 36);
+                        _map[x, y - 4].SizeMode = PictureBoxSizeMode.Normal;
+                        this.Controls.Add(_map[x, y - 4]);
+                    }
+                }
+            }
         }
         #endregion private methods
     }
