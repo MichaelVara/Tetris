@@ -58,7 +58,7 @@ namespace Tetris
             _gestionforme = new GestionForme();
 
             //Ajout de la forme actuelle
-            _gestionforme.NouvelleForme(formeRandom);
+            _gestionforme.NouvelleForme("baton");
 
             //Dessine la forme actuelle
             DessinerForme();
@@ -181,6 +181,30 @@ namespace Tetris
                             case 7:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
                                 break;
+
+                            case 11:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
+                                break;
+
+                            case 13:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL1;
+                                break;
+
+                            case 14:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL2;
+                                break;
+
+                            case 15:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksS;
+                                break;
+
+                            case 16:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksT;
+                                break;
+
+                            case 17:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
+                                break;
                         }
                     }
                     else
@@ -202,6 +226,16 @@ namespace Tetris
 
                 case Keys.Right:
                     _gestionforme.DeplacementForme("droite");
+                    DessinerForme();
+                    break;
+
+                case Keys.A:
+                    _gestionforme.DeplacementForme("a");
+                    DessinerForme();
+                    break;
+
+                case Keys.D:
+                    _gestionforme.DeplacementForme("d");
                     DessinerForme();
                     break;
             }
