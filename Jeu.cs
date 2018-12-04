@@ -58,7 +58,7 @@ namespace Tetris
             _gestionforme = new GestionForme();
 
             //Ajout de la forme actuelle
-            _gestionforme.NouvelleForme("baton");
+            _gestionforme.NouvelleForme(formeRandom);
 
             //Dessine la forme actuelle
             DessinerForme();
@@ -131,6 +131,30 @@ namespace Tetris
                             //Baton
                             case 1:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
+                                break;
+
+                            case 2:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksCube;
+                                break;
+
+                            case 3:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL1;
+                                break;
+
+                            case 4:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL2;
+                                break;
+
+                            case 5:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksS;
+                                break;
+
+                            case 6:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksT;
+                                break;
+
+                            case 7:
+                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
                                 break;
                         }
                         //Initialisation des propriétés de l'image

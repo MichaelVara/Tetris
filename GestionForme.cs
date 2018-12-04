@@ -57,6 +57,48 @@ namespace Tetris
                     _map[5, 4] = 1;
                     _map[6, 4] = 1;
                     break;
+
+                case "cube":
+                    _map[4, 4] = 2;
+                    _map[5, 4] = 2;
+                    _map[4, 5] = 2;
+                    _map[5, 5] = 2;
+                    break;
+
+                case "l1":
+                    _map[4, 5] = 3;
+                    _map[5, 5] = 3;
+                    _map[6, 5] = 3;
+                    _map[6, 4] = 3;
+                    break;
+
+                case "l2":
+                    _map[4, 4] = 4;
+                    _map[4, 5] = 4;
+                    _map[5, 5] = 4;
+                    _map[6, 5] = 4;
+                    break;
+
+                case "s":
+                    _map[4, 5] = 5;
+                    _map[5, 5] = 5;
+                    _map[5, 4] = 5;
+                    _map[6, 4] = 5;
+                    break;
+
+                case "t":
+                    _map[4, 5] = 6;
+                    _map[5, 5] = 6;
+                    _map[5, 4] = 6;
+                    _map[6, 5] = 6;
+                    break;
+
+                case "z":
+                    _map[4, 4] = 7;
+                    _map[5, 4] = 7;
+                    _map[5, 5] = 7;
+                    _map[6, 5] = 7;
+                    break;
             }
         }
         #endregion public methods
