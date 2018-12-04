@@ -199,6 +199,11 @@ namespace Tetris
                     _gestionforme.DeplacementForme("gauche");
                     DessinerForme();
                     break;
+
+                case Keys.Right:
+                    _gestionforme.DeplacementForme("droite");
+                    DessinerForme();
+                    break;
             }
         }
         #endregion private methods

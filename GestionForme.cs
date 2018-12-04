@@ -145,6 +145,40 @@ namespace Tetris
                         }
                     }
                     break;
+
+                //Flèche droite (déplacement vers la droite)
+                case "droite":
+
+                    //Vérification que l'action soit possible
+                    for (y = 0; y < 24; y++)
+                    {
+                        for (x = 0; x < 10; x++)
+                        {
+                            //Si bloc coller au bord droite de la map
+                            if (_map[x, y] > 0 && x == 9)
+                            {
+                                ok = false;
+                            }
+                        }
+                    }
+
+                    //Si l'action est possible
+                    if (ok)
+                    {
+                        for (y = 0; y < 24; y++)
+                        {
+                            for (x = 9; x >= 0; x--)
+                            {
+                                if (_map[x, y] > 0)
+                                {
+                                    //Effectue le déplacement d'un bloc
+                                    _map[x + 1, y] = _map[x, y];
+                                    _map[x, y] = 0;
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
         }
         #endregion public methods
