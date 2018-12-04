@@ -134,8 +134,7 @@ namespace Tetris
                                 break;
                         }
                         //Initialisation des propriétés de l'image
-                        //_map[x, y - 4].Location = new Point(36 * x + 48, 36 * (y - 4) + 77);
-                        _map[x, y - 4].Location = new Point(48, 77);
+                        _map[x, y - 4].Location = new Point(36 * x + 48, 36 * (y - 4) + 77);
                         _map[x, y - 4].Size = new Size(36, 36);
                         _map[x, y - 4].SizeMode = PictureBoxSizeMode.Normal;
                         this.Controls.Add(_map[x, y - 4]);

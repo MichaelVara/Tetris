@@ -173,6 +173,26 @@ namespace Tetris.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksMurHorizontale {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksMurHorizontale", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TetrisBlocksMurVerticale {
+            get {
+                object obj = ResourceManager.GetObject("TetrisBlocksMurVerticale", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TetrisBlocksS {
             get {
                 object obj = ResourceManager.GetObject("TetrisBlocksS", resourceCulture);

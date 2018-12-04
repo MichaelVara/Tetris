@@ -32,6 +32,9 @@
             this.lblLines = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblLevelStat = new System.Windows.Forms.Label();
+            this.lblLinesStat = new System.Windows.Forms.Label();
+            this.lblScoreStat = new System.Windows.Forms.Label();
             this.ptbNextZ = new System.Windows.Forms.PictureBox();
             this.ptbNextT = new System.Windows.Forms.PictureBox();
             this.ptbNextS = new System.Windows.Forms.PictureBox();
@@ -39,10 +42,10 @@
             this.ptbNextL1 = new System.Windows.Forms.PictureBox();
             this.ptbNextCube = new System.Windows.Forms.PictureBox();
             this.ptbNextBaton = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblLevelStat = new System.Windows.Forms.Label();
-            this.lblLinesStat = new System.Windows.Forms.Label();
-            this.lblScoreStat = new System.Windows.Forms.Label();
+            this.ptbMurHor1 = new System.Windows.Forms.PictureBox();
+            this.ptbMurVer1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.ptbMurVer2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).BeginInit();
@@ -51,7 +54,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextBaton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurHor1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurVer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurVer2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLevel
@@ -108,6 +114,42 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NEXT";
+            // 
+            // lblLevelStat
+            // 
+            this.lblLevelStat.AutoSize = true;
+            this.lblLevelStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevelStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevelStat.ForeColor = System.Drawing.Color.White;
+            this.lblLevelStat.Location = new System.Drawing.Point(779, 344);
+            this.lblLevelStat.Name = "lblLevelStat";
+            this.lblLevelStat.Size = new System.Drawing.Size(40, 41);
+            this.lblLevelStat.TabIndex = 5;
+            this.lblLevelStat.Text = "0";
+            // 
+            // lblLinesStat
+            // 
+            this.lblLinesStat.AutoSize = true;
+            this.lblLinesStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblLinesStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLinesStat.ForeColor = System.Drawing.Color.White;
+            this.lblLinesStat.Location = new System.Drawing.Point(779, 541);
+            this.lblLinesStat.Name = "lblLinesStat";
+            this.lblLinesStat.Size = new System.Drawing.Size(40, 41);
+            this.lblLinesStat.TabIndex = 6;
+            this.lblLinesStat.Text = "0";
+            // 
+            // lblScoreStat
+            // 
+            this.lblScoreStat.AutoSize = true;
+            this.lblScoreStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblScoreStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreStat.ForeColor = System.Drawing.Color.White;
+            this.lblScoreStat.Location = new System.Drawing.Point(779, 738);
+            this.lblScoreStat.Name = "lblScoreStat";
+            this.lblScoreStat.Size = new System.Drawing.Size(40, 41);
+            this.lblScoreStat.TabIndex = 7;
+            this.lblScoreStat.Text = "0";
             // 
             // ptbNextZ
             // 
@@ -186,52 +228,47 @@
             this.ptbNextBaton.TabStop = false;
             this.ptbNextBaton.Visible = false;
             // 
-            // pictureBox1
+            // ptbMurHor1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Tetris.Properties.Resources.TetrisBlocksMurCadre;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 41);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(432, 792);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.ptbMurHor1.BackColor = System.Drawing.Color.Transparent;
+            this.ptbMurHor1.Image = global::Tetris.Properties.Resources.TetrisBlocksMurHorizontale;
+            this.ptbMurHor1.Location = new System.Drawing.Point(12, 41);
+            this.ptbMurHor1.Name = "ptbMurHor1";
+            this.ptbMurHor1.Size = new System.Drawing.Size(432, 36);
+            this.ptbMurHor1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.ptbMurHor1.TabIndex = 0;
+            this.ptbMurHor1.TabStop = false;
             // 
-            // lblLevelStat
+            // ptbMurVer1
             // 
-            this.lblLevelStat.AutoSize = true;
-            this.lblLevelStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblLevelStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLevelStat.ForeColor = System.Drawing.Color.White;
-            this.lblLevelStat.Location = new System.Drawing.Point(779, 344);
-            this.lblLevelStat.Name = "lblLevelStat";
-            this.lblLevelStat.Size = new System.Drawing.Size(40, 41);
-            this.lblLevelStat.TabIndex = 5;
-            this.lblLevelStat.Text = "0";
+            this.ptbMurVer1.BackColor = System.Drawing.Color.Transparent;
+            this.ptbMurVer1.Image = global::Tetris.Properties.Resources.TetrisBlocksMurVerticale;
+            this.ptbMurVer1.Location = new System.Drawing.Point(12, 41);
+            this.ptbMurVer1.Name = "ptbMurVer1";
+            this.ptbMurVer1.Size = new System.Drawing.Size(36, 792);
+            this.ptbMurVer1.TabIndex = 8;
+            this.ptbMurVer1.TabStop = false;
             // 
-            // lblLinesStat
+            // pictureBox2
             // 
-            this.lblLinesStat.AutoSize = true;
-            this.lblLinesStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblLinesStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLinesStat.ForeColor = System.Drawing.Color.White;
-            this.lblLinesStat.Location = new System.Drawing.Point(779, 541);
-            this.lblLinesStat.Name = "lblLinesStat";
-            this.lblLinesStat.Size = new System.Drawing.Size(40, 41);
-            this.lblLinesStat.TabIndex = 6;
-            this.lblLinesStat.Text = "0";
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::Tetris.Properties.Resources.TetrisBlocksMurHorizontale;
+            this.pictureBox2.Location = new System.Drawing.Point(12, 797);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(432, 36);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
             // 
-            // lblScoreStat
+            // ptbMurVer2
             // 
-            this.lblScoreStat.AutoSize = true;
-            this.lblScoreStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblScoreStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreStat.ForeColor = System.Drawing.Color.White;
-            this.lblScoreStat.Location = new System.Drawing.Point(779, 738);
-            this.lblScoreStat.Name = "lblScoreStat";
-            this.lblScoreStat.Size = new System.Drawing.Size(40, 41);
-            this.lblScoreStat.TabIndex = 7;
-            this.lblScoreStat.Text = "0";
+            this.ptbMurVer2.BackColor = System.Drawing.Color.Transparent;
+            this.ptbMurVer2.Image = global::Tetris.Properties.Resources.TetrisBlocksMurVerticale;
+            this.ptbMurVer2.Location = new System.Drawing.Point(408, 41);
+            this.ptbMurVer2.Name = "ptbMurVer2";
+            this.ptbMurVer2.Size = new System.Drawing.Size(36, 792);
+            this.ptbMurVer2.TabIndex = 10;
+            this.ptbMurVer2.TabStop = false;
             // 
             // frmJeu
             // 
@@ -239,6 +276,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(927, 887);
+            this.Controls.Add(this.ptbMurVer2);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.ptbMurVer1);
             this.Controls.Add(this.lblScoreStat);
             this.Controls.Add(this.lblLinesStat);
             this.Controls.Add(this.lblLevelStat);
@@ -246,7 +286,7 @@
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblLines);
             this.Controls.Add(this.lblLevel);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ptbMurHor1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(943, 926);
             this.MinimumSize = new System.Drawing.Size(943, 926);
@@ -261,7 +301,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextL1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextCube)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextBaton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurHor1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurVer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMurVer2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,7 +312,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ptbMurHor1;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblLines;
         private System.Windows.Forms.Label lblScore;
@@ -284,5 +327,8 @@
         private System.Windows.Forms.Label lblLevelStat;
         private System.Windows.Forms.Label lblLinesStat;
         private System.Windows.Forms.Label lblScoreStat;
+        private System.Windows.Forms.PictureBox ptbMurVer1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox ptbMurVer2;
     }
 }
