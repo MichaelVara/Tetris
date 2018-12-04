@@ -39,7 +39,7 @@ namespace Tetris
 
             //Réinitialisation des variables
             _nextForme = null;
-            _map = new PictureBox[20, 10];
+            InitialiseImages();
 
 
             //Désigne la prochaine forme
@@ -112,6 +112,31 @@ namespace Tetris
             return f.ToString();
         }
 
+        //Initialise toutes les picturebox de la map
+        private void InitialiseImages()
+        {
+            int x;
+            int y;
+
+            _map = new PictureBox[10, 20];
+
+            //Pour chaque case de la map
+            for (y = 0; y < 20; y++)
+            {
+                for (x = 0; x < 10; x++)
+                {
+                    _map[x, y] = new PictureBox();
+                        
+                    //Initialisation des propriétés de l'image
+                    _map[x, y].Location = new Point(36 * x + 48, 36 * y + 77);
+                    _map[x, y].Size = new Size(36, 36);
+                    _map[x, y].SizeMode = PictureBoxSizeMode.Normal;
+                    this.Controls.Add(_map[x, y]);
+                }
+            }
+        }
+
+        //Dessine la forme actuel
         private void DessinerForme()
         {
             int x;
@@ -125,10 +150,10 @@ namespace Tetris
                     //S'il y a un bloc
                     if (_gestionforme.map()[x,y] > 0)
                     {
-                        _map[x, y - 4] = new PictureBox();
+
+                        //Sélectionne le bon bloc en fonction de la forme
                         switch (_gestionforme.map()[x,y])
                         {
-                            //Baton
                             case 1:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
                                 break;
@@ -157,13 +182,23 @@ namespace Tetris
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
                                 break;
                         }
-                        //Initialisation des propriétés de l'image
-                        _map[x, y - 4].Location = new Point(36 * x + 48, 36 * (y - 4) + 77);
-                        _map[x, y - 4].Size = new Size(36, 36);
-                        _map[x, y - 4].SizeMode = PictureBoxSizeMode.Normal;
-                        this.Controls.Add(_map[x, y - 4]);
+                    }
+                    else
+                    {
+                        _map[x, y - 4].Image = null;
                     }
                 }
+            }
+        }
+
+        private void frmJeu_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    _gestionforme.DeplacementForme("gauche");
+                    DessinerForme();
+                    break;
             }
         }
         #endregion private methods

@@ -32,9 +32,6 @@
             this.lblLines = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblLevelStat = new System.Windows.Forms.Label();
-            this.lblLinesStat = new System.Windows.Forms.Label();
-            this.lblScoreStat = new System.Windows.Forms.Label();
             this.ptbNextZ = new System.Windows.Forms.PictureBox();
             this.ptbNextT = new System.Windows.Forms.PictureBox();
             this.ptbNextS = new System.Windows.Forms.PictureBox();
@@ -42,6 +39,9 @@
             this.ptbNextL1 = new System.Windows.Forms.PictureBox();
             this.ptbNextCube = new System.Windows.Forms.PictureBox();
             this.ptbNextBaton = new System.Windows.Forms.PictureBox();
+            this.lblLevelStat = new System.Windows.Forms.Label();
+            this.lblLinesStat = new System.Windows.Forms.Label();
+            this.lblScoreStat = new System.Windows.Forms.Label();
             this.ptbMurHor1 = new System.Windows.Forms.PictureBox();
             this.ptbMurVer1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -114,42 +114,6 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NEXT";
-            // 
-            // lblLevelStat
-            // 
-            this.lblLevelStat.AutoSize = true;
-            this.lblLevelStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblLevelStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLevelStat.ForeColor = System.Drawing.Color.White;
-            this.lblLevelStat.Location = new System.Drawing.Point(779, 344);
-            this.lblLevelStat.Name = "lblLevelStat";
-            this.lblLevelStat.Size = new System.Drawing.Size(40, 41);
-            this.lblLevelStat.TabIndex = 5;
-            this.lblLevelStat.Text = "0";
-            // 
-            // lblLinesStat
-            // 
-            this.lblLinesStat.AutoSize = true;
-            this.lblLinesStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblLinesStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLinesStat.ForeColor = System.Drawing.Color.White;
-            this.lblLinesStat.Location = new System.Drawing.Point(779, 541);
-            this.lblLinesStat.Name = "lblLinesStat";
-            this.lblLinesStat.Size = new System.Drawing.Size(40, 41);
-            this.lblLinesStat.TabIndex = 6;
-            this.lblLinesStat.Text = "0";
-            // 
-            // lblScoreStat
-            // 
-            this.lblScoreStat.AutoSize = true;
-            this.lblScoreStat.BackColor = System.Drawing.Color.Transparent;
-            this.lblScoreStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreStat.ForeColor = System.Drawing.Color.White;
-            this.lblScoreStat.Location = new System.Drawing.Point(779, 738);
-            this.lblScoreStat.Name = "lblScoreStat";
-            this.lblScoreStat.Size = new System.Drawing.Size(40, 41);
-            this.lblScoreStat.TabIndex = 7;
-            this.lblScoreStat.Text = "0";
             // 
             // ptbNextZ
             // 
@@ -228,6 +192,42 @@
             this.ptbNextBaton.TabStop = false;
             this.ptbNextBaton.Visible = false;
             // 
+            // lblLevelStat
+            // 
+            this.lblLevelStat.AutoSize = true;
+            this.lblLevelStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevelStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevelStat.ForeColor = System.Drawing.Color.White;
+            this.lblLevelStat.Location = new System.Drawing.Point(779, 344);
+            this.lblLevelStat.Name = "lblLevelStat";
+            this.lblLevelStat.Size = new System.Drawing.Size(40, 41);
+            this.lblLevelStat.TabIndex = 5;
+            this.lblLevelStat.Text = "0";
+            // 
+            // lblLinesStat
+            // 
+            this.lblLinesStat.AutoSize = true;
+            this.lblLinesStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblLinesStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLinesStat.ForeColor = System.Drawing.Color.White;
+            this.lblLinesStat.Location = new System.Drawing.Point(779, 541);
+            this.lblLinesStat.Name = "lblLinesStat";
+            this.lblLinesStat.Size = new System.Drawing.Size(40, 41);
+            this.lblLinesStat.TabIndex = 6;
+            this.lblLinesStat.Text = "0";
+            // 
+            // lblScoreStat
+            // 
+            this.lblScoreStat.AutoSize = true;
+            this.lblScoreStat.BackColor = System.Drawing.Color.Transparent;
+            this.lblScoreStat.Font = new System.Drawing.Font("Lucida Calligraphy", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreStat.ForeColor = System.Drawing.Color.White;
+            this.lblScoreStat.Location = new System.Drawing.Point(779, 738);
+            this.lblScoreStat.Name = "lblScoreStat";
+            this.lblScoreStat.Size = new System.Drawing.Size(40, 41);
+            this.lblScoreStat.TabIndex = 7;
+            this.lblScoreStat.Text = "0";
+            // 
             // ptbMurHor1
             // 
             this.ptbMurHor1.BackColor = System.Drawing.Color.Transparent;
@@ -293,6 +293,7 @@
             this.Name = "frmJeu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jeu";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmJeu_KeyDown);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbNextT)).EndInit();

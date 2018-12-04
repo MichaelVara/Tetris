@@ -101,6 +101,52 @@ namespace Tetris
                     break;
             }
         }
+
+        //Actions s'exécutant lorsque l'utilisateur appui sur une touche
+        public void DeplacementForme(string action)
+        {
+            int x;
+            int y;
+            int block;
+            bool ok = true;
+
+            switch(action)
+            {
+                //Flèche gauche (déplacement vers la gauche)
+                case "gauche":
+
+                    //Vérification que l'action soit possible
+                    for (y = 0; y < 24; y++)
+                    {
+                        for (x = 0; x < 10; x++)
+                        {
+                            //Si bloc coller au bord gauche de la map
+                            if (_map[x, y] > 0 && x == 0)
+                            {
+                                ok = false;
+                            }
+                        }
+                    }
+
+                    //Si l'action est possible
+                    if(ok)
+                    {
+                        for (y = 0; y < 24; y++)
+                        {
+                            for (x = 0; x < 10; x++)
+                            {
+                                if (_map[x, y] > 0)
+                                {
+                                    //Effectue le déplacement d'un bloc
+                                    _map[x - 1, y] = _map[x, y];
+                                    _map[x, y] = 0;
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
         #endregion public methods
 
         #region private methods
