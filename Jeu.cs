@@ -229,6 +229,16 @@ namespace Tetris
                     DessinerForme();
                     break;
 
+                case Keys.Up:
+                    _gestionforme.DeplacementForme("haut");
+                    DessinerForme();
+                    break;
+
+                case Keys.Down:
+                    _gestionforme.DeplacementForme("bas");
+                    DessinerForme();
+                    break;
+
                 case Keys.A:
                     _gestionforme.DeplacementForme("a");
                     DessinerForme();

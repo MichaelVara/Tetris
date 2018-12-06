@@ -180,236 +180,380 @@ namespace Tetris
                     }
                     break;
 
+                case "bas":
+
+                    //Vérification que l'action soit possible
+                    for (y = 0; y < 24; y++)
+                    {
+                        for (x = 0; x < 10; x++)
+                        {
+                            //Si bloc coller au bord droite de la map
+                            if (_map[x, y] > 0 && y == 23)
+                            {
+                                ok = false;
+                            }
+                        }
+                    }
+
+                    //Si l'action est possible
+                    if (ok)
+                    {
+                        for (y = 23; y >= 0; y--)
+                        {
+                            for (x = 9; x >= 0; x--)
+                            {
+                                if (_map[x, y] > 0)
+                                {
+                                    //Effectue le déplacement d'un bloc
+                                    _map[x, y + 1] = _map[x, y];
+                                    _map[x, y] = 0;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case "haut":
+
+                    //Vérification que l'action soit possible
+                    for (y = 0; y < 24; y++)
+                    {
+                        for (x = 0; x < 10; x++)
+                        {
+                            //Si bloc coller au bord droite de la map
+                            if (_map[x, y] > 0 && y == 0)
+                            {
+                                ok = false;
+                            }
+                        }
+                    }
+
+                    //Si l'action est possible
+                    if (ok)
+                    {
+                        for (y = 0; y < 24; y++)
+                        {
+                            for (x = 9; x >= 0; x--)
+                            {
+                                if (_map[x, y] > 0)
+                                {
+                                    //Effectue le déplacement d'un bloc
+                                    _map[x, y - 1] = _map[x, y];
+                                    _map[x, y] = 0;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
                 //Touche A (rotation gauche)
                 case "a":
                     switch(_formeActuelle)
                     {
                         case "baton":
+                            //Point de rotation == 11
+
+
+                            //Check toutes la valeurs du tableau
                             for(y = 0; y < 24; y++)
                             {
                                 for(x = 0; x < 10; x++)
                                 {
-                                    //Effectue les vérifications et les déplacements pour la rotation avec des valeurs temporaires
+                                    //Lorsqu'un bloc est trouvé
                                     if(_map[x, y] == 1)
                                     {
                                         _map[x, y] = 0;
 
-                                        if(x == 9)
+                                        //Si bloc collé au bord droite (le baton est verticale dans ce cas)
+                                        if (x == 9)
                                         {
-                                            if (_map[x - 1, y] == 11)
+                                            //Le point de rotation se trouve un bloc en dessous
+                                            if (_map[x, y + 1] == 11)
                                             {
-                                                _map[x - 1, y - 1] = 21;
+                                                //Suppression des anciennes positions
+                                                _map[x, y + 2] = 0;
+                                                _map[x, y + 3] = 0;
+
+                                                //Initialisation des nouvelles positions
+                                                _map[x, y + 1] = 1;
+                                                _map[x - 1, y + 1] = 1;
+                                                _map[x - 2, y + 1] = 11;
+                                                _map[x - 3, y + 1] = 1;
                                             }
-                                            else if (_map[x - 2, y] == 11)
+                                            //Le point de rotation se trouve deux blocs en dessous
+                                            else
                                             {
-                                                _map[x - 2, y - 2] = 21;
+                                                //Suppression des anciennes positions
+                                                _map[x, y + 1] = 0;
+                                                _map[x, y + 3] = 0;
+
+                                                //Initialisation des nouvelles positions
+                                                _map[x, y + 2] = 1;
+                                                _map[x - 1, y + 2] = 11;
+                                                _map[x - 2, y + 2] = 1;
+                                                _map[x - 3, y + 2] = 1;
                                             }
-
-
-                                            else if (_map[x, y - 1] == 11)
+                                        }
+                                        //Si bloc à une case du bord droite (le baton est verticale dans ce cas)
+                                        else if (x == 8)
+                                        {
+                                            //Le point de rotation se trouve un bloc en dessous
+                                            if (_map[x, y + 1] == 11)
                                             {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
+                                                //Suppression des anciennes positions
+                                                _map[x, y + 2] = 0;
+                                                _map[x, y + 3] = 0;
 
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x, y + 1] = 21;
-
-                                                _map[x - 3, y + 1] = 21;
-                                                _map[x - 2, y + 1] = 21;
+                                                //Initialisation des nouvelles positions
+                                                _map[x + 1, y + 1] = 1;
+                                                _map[x, y + 1] = 1;
                                                 _map[x - 1, y + 1] = 11;
+                                                _map[x - 2, y + 1] = 1;
                                             }
-
-                                            else if (_map[x, y + 2] == 11)
+                                            //Le point de rotation se trouve deux blocs en dessous
+                                            else
                                             {
-                                                _map[x - 2, y + 2] = 21;
-                                            }
-
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x, y - 2] = 21;
-
-                                                _map[x - 1, y - 2] = 11;
-                                                _map[x - 2, y - 2] = 21;
-                                                _map[x - 3, y - 2] = 21;
-                                            }
-
-                                        }
-                                        else if(x == 8)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x - 2, y] == 11)
-                                            {
-                                                _map[x - 2, y - 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x - 2, y + 2] = 21;
-                                            }
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x + 1, y - 2] = 21;
-
-                                                _map[x, y - 2] = 11;
-                                                _map[x - 1, y - 2] = 21;
-                                                _map[x - 2, y - 2] = 21;
-                                            }
-                                        }
-                                        else if(x == 0)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x, y + 1] = 21;
-
-                                                _map[x + 1, y + 1] = 11;
-                                                _map[x + 2, y + 1] = 21;
-                                                _map[x + 3, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x, y + 2] = 21;
-
-                                                _map[x + 1, y + 2] = 21;
-                                                _map[x + 2, y + 2] = 11;
-                                                _map[x + 3, y + 2] = 21;
-
+                                                //Suppression des anciennes positions
                                                 _map[x, y + 1] = 0;
                                                 _map[x, y + 3] = 0;
-                                            }
 
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x + 2, y - 2] = 21;
-                                            }
-                                        }
-                                        else if(x == 1)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x - 1, y + 2] = 21;
-
-                                                _map[x, y + 2] = 21;
-                                                _map[x + 1, y + 2] = 11;
-                                                _map[x + 2, y + 2] = 21;
-
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-                                            }
-
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x + 2, y - 2] = 21;
+                                                //Initialisation des nouvelles positions
+                                                _map[x + 1, y + 2] = 1;
+                                                _map[x, y + 2] = 11;
+                                                _map[x - 1, y + 2] = 1;
+                                                _map[x - 2, y + 2] = 1;
                                             }
                                         }
                                         else
                                         {
-                                            if (_map[x + 1, y] == 11)
+                                            //Si bloc collé en bas (le baton est horizontale dans ce cas)
+                                            if (y == 23)
                                             {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x - 2, y] == 11)
-                                            {
-                                                _map[x - 2, y - 2] = 21;
-                                            }
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
+                                                //Le point de rotation se trouve un bloc plus loin
+                                                if(_map[x + 1, y] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 2, y] = 0;
+                                                    _map[x + 3, y] = 0;
 
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 1, y] = 1;
+                                                    _map[x + 1, y - 1] = 11;
+                                                    _map[x + 1, y - 2] = 1;
+                                                    _map[x + 1, y - 3] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs plus loin
+                                                else
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 1, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 2, y] = 1;
+                                                    _map[x + 2, y - 1] = 1;
+                                                    _map[x + 2, y - 2] = 11;
+                                                    _map[x + 2, y - 3] = 1;
+                                                }
                                             }
-                                            else if (_map[x, y + 1] == 11)
+                                            //Si bloc à une case du bas (le baton est horizontale dans ce cas)
+                                            else if (y == 22)
                                             {
-                                                _map[x - 1, y + 1] = 21;
+                                                //Le point de rotation se trouve un bloc plus loin
+                                                if (_map[x + 1, y] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 2, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 1, y] = 11;
+                                                    _map[x + 1, y - 1] = 1;
+                                                    _map[x + 1, y - 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs plus loin
+                                                else
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 1, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 2, y + 1] = 1;
+                                                    _map[x + 2, y] = 1;
+                                                    _map[x + 2, y - 1] = 11;
+                                                    _map[x + 2, y - 2] = 1;
+                                                }
                                             }
-                                            else if (_map[x, y + 2] == 11)
+                                            //Si le bloc est collé au bord gauche
+                                            else if (x == 0)
                                             {
-                                                _map[x - 2, y + 2] = 21;
+                                                //Le point de rotation se trouve un bloc en dessous
+                                                if (_map[x, y + 1] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 2] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x, y + 1] = 1;
+                                                    _map[x + 1, y + 1] = 11;
+                                                    _map[x + 2, y + 1] = 1;
+                                                    _map[x + 3, y + 1] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs en dessous
+                                                else if(_map[x, y + 2] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 1] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x, y + 2] = 1;
+                                                    _map[x + 1, y + 2] = 1;
+                                                    _map[x + 2, y + 2] = 11;
+                                                    _map[x + 3, y + 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve un bloc plus loin
+                                                else if(_map[x + 1, y] == 11)
+                                                {
+                                                    //Suppression des anciennes position
+                                                    _map[x + 2, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 1, y - 1] = 1;
+                                                    _map[x + 1, y - 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs plus loin
+                                                else
+                                                {
+                                                    //Suppression des anciennes position
+                                                    _map[x + 1, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 2, y + 1] = 1;
+                                                    _map[x + 2, y + 2] = 1;
+                                                    _map[x + 2, y - 1] = 1;
+                                                }
                                             }
-                                            else if (_map[x, y - 2] == 11)
+                                            //Si le bloc est collé au bord gauche
+                                            else if (x == 1)
                                             {
-                                                _map[x + 2, y - 2] = 21;
+                                                //Le point de rotation se trouve un bloc en dessous
+                                                if (_map[x, y + 1] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 2] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x - 1, y + 1] = 1;
+                                                    _map[x, y + 1] = 11;
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 2, y + 1] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs en dessous
+                                                else if (_map[x, y + 2] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 1] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x - 1, y + 2] = 1;
+                                                    _map[x, y + 2] = 1;
+                                                    _map[x + 1, y + 2] = 11;
+                                                    _map[x + 2, y + 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve un bloc plus loin
+                                                else if (_map[x + 1, y] == 11)
+                                                {
+                                                    //Suppression des anciennes position
+                                                    _map[x + 2, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 1, y - 1] = 1;
+                                                    _map[x + 1, y - 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs plus loin
+                                                else
+                                                {
+                                                    //Suppression des anciennes position
+                                                    _map[x + 1, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 2, y + 1] = 1;
+                                                    _map[x + 2, y + 2] = 1;
+                                                    _map[x + 2, y - 1] = 1;
+                                                }
+                                            }
+                                            //On ne sait pas si le baton est vertical ou horizontale
+                                            else
+                                            {
+                                                //Le point de rotation se trouve un bloc plus loin
+                                                if(_map[x + 1, y] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 2, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 1, y - 1] = 1;
+                                                    _map[x + 1, y - 2] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs plus loin
+                                                else if(_map[x + 2, y] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x + 1, y] = 0;
+                                                    _map[x + 3, y] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x + 2, y + 2] = 1;
+                                                    _map[x + 2, y + 1] = 1;
+                                                    _map[x + 2, y - 1] = 1;
+                                                }
+                                                //Le point de rotation se trouve un bloc en dessous
+                                                else if(_map[x, y + 1] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 2] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x - 1, y + 1] = 1;
+                                                    _map[x + 1, y + 1] = 1;
+                                                    _map[x + 2, y + 1] = 1;
+                                                }
+                                                //Le point de rotation se trouve deux blocs en dessous
+                                                else if(_map[x, y + 2] == 11)
+                                                {
+                                                    //Suppression des anciennes positions
+                                                    _map[x, y + 1] = 0;
+                                                    _map[x, y + 3] = 0;
+
+                                                    //Initialisation des nouvelles positions
+                                                    _map[x - 2, y + 2] = 1;
+                                                    _map[x - 1, y + 2] = 1;
+                                                    _map[x + 1, y + 2] = 1;
+                                                }
                                             }
                                         }
+                                        //On sort de la boucle
+                                        x = 10;
+                                        y = 24;
                                     }
                                 }
                             }
                             break;
-                    }
-
-                    //Remet les valeurs de base des blocs
-                    for (y = 0; y < 24; y++)
-                    {
-                        for (x = 0; x < 10; x++)
-                        {
-                            if (_map[x, y] == 21)
-                            {
-                                _map[x, y] = 1;
-                            }
-                        }
                     }
                     break;
 
@@ -422,233 +566,10 @@ namespace Tetris
                             {
                                 for (x = 0; x < 10; x++)
                                 {
-                                    //Effectue les vérifications et les déplacements pour la rotation avec des valeurs temporaires
-                                    if (_map[x, y] == 1)
-                                    {
-                                        _map[x, y] = 0;
 
-                                        if(x == 9)
-                                        {
-                                            if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x - 2, y] == 11)
-                                            {
-                                                _map[x - 2, y + 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x, y + 1] = 21;
-                                                
-                                                _map[x - 1, y + 1] = 11;
-                                                _map[x - 2, y + 1] = 21;
-                                                _map[x - 3, y + 1] = 21;
-
-                                                _map[x, y + 2] = 0;
-                                                _map[x, y + 3] = 0;
-                                            }
-
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x, y + 2] = 21;
-
-                                                _map[x - 1, y + 2] = 21;
-                                                _map[x - 2, y + 2] = 11;
-                                                _map[x - 3, y + 2] = 21;
-
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-                                            }
-                                        }
-                                        else if(x == 8)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x - 2, y] == 11)
-                                            {
-                                                _map[x - 2, y + 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x + 1, y + 2] = 21;
-
-                                                _map[x, y + 2] = 21;
-                                                _map[x - 1, y + 2] = 11;
-                                                _map[x - 2, y + 2] = 21;
-
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-                                            }
-
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x - 2, y - 2] = 21;
-                                            }
-                                        }
-                                        else if(x == 0)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y - 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11 && _map[x, y + 1] == 0)
-                                            {
-                                                _map[x, y - 1] = 21;
-
-                                                _map[x + 1, y - 1] = 11;
-                                                _map[x + 2, y - 1] = 21;
-                                                _map[x + 3, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
-
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x, y - 2] = 21;
-
-                                                _map[x + 1, y - 2] = 21;
-                                                _map[x + 2, y - 2] = 11;
-                                                _map[x + 3, y - 2] = 21;
-                                            }
-                                        }
-                                        else if(x == 1)
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y - 2] = 21;
-                                            }
-
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x - 1, y - 2] = 21;
-
-                                                _map[x, y - 2] = 21;
-                                                _map[x + 1, y - 2] = 11;
-                                                _map[x + 2, y - 2] = 21;
-                                            }
-                                        }
-
-                                        else
-                                        {
-                                            if (_map[x + 1, y] == 11)
-                                            {
-                                                _map[x + 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x - 1, y] == 11)
-                                            {
-                                                _map[x - 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x - 2, y] == 11)
-                                            {
-                                                _map[x - 2, y + 2] = 21;
-                                            }
-                                            else if (_map[x + 2, y] == 11)
-                                            {
-                                                _map[x + 2, y - 2] = 21;
-                                            }
-
-                                            else if (_map[x, y - 1] == 11)
-                                            {
-                                                _map[x - 1, y - 1] = 21;
-                                            }
-                                            else if (_map[x, y + 1] == 11)
-                                            {
-                                                _map[x + 1, y + 1] = 21;
-                                            }
-                                            else if (_map[x, y + 2] == 11)
-                                            {
-                                                _map[x + 2, y + 2] = 21;
-                                            }
-                                            else if (_map[x, y - 2] == 11)
-                                            {
-                                                _map[x - 2, y - 2] = 21;
-                                            }
-                                        }
-                                    }
                                 }
                             }
-
-
                             break;
-                    }
-
-                    //Remet les valeurs de base des blocs
-                    for (y = 0; y < 24; y++)
-                    {
-                        for (x = 0; x < 10; x++)
-                        {
-                            if (_map[x, y] == 21)
-                            {
-                                _map[x, y] = 1;
-                            }
-                        }
                     }
                     break;
             }
