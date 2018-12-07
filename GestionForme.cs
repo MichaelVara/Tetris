@@ -11,6 +11,7 @@ namespace Tetris
         #region private attributes
         private string _formeActuelle;
         private int[,] _map = new int[10, 24];
+        private bool _nouvellePiece = false;
         #endregion private attributes
 
         #region constructors
@@ -40,6 +41,11 @@ namespace Tetris
         public string formeActuelle()
         {
             return _formeActuelle;
+        }
+
+        public bool nouvellePiece()
+        {
+            return _nouvellePiece;
         }
         #endregion accessors and mutators
 
@@ -100,6 +106,8 @@ namespace Tetris
                     _map[6, 7] = 7;
                     break;
             }
+            //On n'a plus besoin d'une nouvelle pièce
+            _nouvellePiece = false;
         }
 
         //Actions s'exécutant lorsque l'utilisateur appui sur une touche
@@ -107,8 +115,8 @@ namespace Tetris
         {
             int x;
             int y;
-            int block;
             bool ok = true;
+            bool pose = false;
 
             switch(action)
             {
@@ -121,9 +129,16 @@ namespace Tetris
                         for (x = 0; x < 10; x++)
                         {
                             //Si bloc coller au bord gauche de la map
-                            if (_map[x, y] > 0 && x == 0)
+                            if (_map[x, y] > 0 && _map[x, y] < 20)
                             {
-                                ok = false;
+                                if(x == 0)
+                                {
+                                    ok = false;
+                                }
+                                else if(_map[x - 1, y] > 20)
+                                {
+                                    ok = false;
+                                }
                             }
                         }
                     }
@@ -135,7 +150,7 @@ namespace Tetris
                         {
                             for (x = 0; x < 10; x++)
                             {
-                                if (_map[x, y] > 0)
+                                if (_map[x, y] > 0 && _map[x, y] < 20)
                                 {
                                     //Effectue le déplacement d'un bloc
                                     _map[x - 1, y] = _map[x, y];
@@ -155,9 +170,16 @@ namespace Tetris
                         for (x = 0; x < 10; x++)
                         {
                             //Si bloc coller au bord droite de la map
-                            if (_map[x, y] > 0 && x == 9)
+                            if (_map[x, y] > 0 && _map[x, y] < 20)
                             {
-                                ok = false;
+                                if(y == 23)
+                                {
+                                    ok = false;
+                                }
+                                else if(_map[x + 1, y] > 20)
+                                {
+                                    ok = false;
+                                }
                             }
                         }
                     }
@@ -169,7 +191,7 @@ namespace Tetris
                         {
                             for (x = 9; x >= 0; x--)
                             {
-                                if (_map[x, y] > 0)
+                                if (_map[x, y] > 0 && _map[x, y] < 20)
                                 {
                                     //Effectue le déplacement d'un bloc
                                     _map[x + 1, y] = _map[x, y];
@@ -188,9 +210,16 @@ namespace Tetris
                         for (x = 0; x < 10; x++)
                         {
                             //Si bloc coller au bord droite de la map
-                            if (_map[x, y] > 0 && y == 23)
+                            if (_map[x, y] > 0 && _map[x, y] < 20)
                             {
-                                ok = false;
+                                if(y == 23)
+                                {
+                                    ok = false;
+                                }
+                                else if(_map[x, y + 1] > 20)
+                                {
+                                    ok = false;
+                                }
                             }
                         }
                     }
@@ -202,13 +231,31 @@ namespace Tetris
                         {
                             for (x = 9; x >= 0; x--)
                             {
-                                if (_map[x, y] > 0)
+                                if (_map[x, y] > 0 && _map[x, y] < 20)
                                 {
                                     //Effectue le déplacement d'un bloc
                                     _map[x, y + 1] = _map[x, y];
                                     _map[x, y] = 0;
+
+                                    if (y + 1 == 23)
+                                    {
+                                        pose = true;
+                                    }
+                                    else if (_map[x, y + 2] > 20)
+                                    {
+                                        pose = true;
+                                    }
                                 }
                             }
+                        }
+                        //Si la pièce est posée
+                        if (pose)
+                        {
+                            //Pose définitivement la pièce dans la grille
+                            PoserPiece();
+
+                            //On a besoin d'une nouvelle pièce
+                            _nouvellePiece = true;
                         }
                     }
                     break;
@@ -221,7 +268,7 @@ namespace Tetris
                         for (x = 0; x < 10; x++)
                         {
                             //Si bloc coller au bord droite de la map
-                            if (_map[x, y] > 0 && y == 0)
+                            if (_map[x, y] > 0 && _map[x, y] < 20 && y == 0)
                             {
                                 ok = false;
                             }
@@ -235,7 +282,7 @@ namespace Tetris
                         {
                             for (x = 9; x >= 0; x--)
                             {
-                                if (_map[x, y] > 0)
+                                if (_map[x, y] > 0 && _map[x, y] < 20)
                                 {
                                     //Effectue le déplacement d'un bloc
                                     _map[x, y - 1] = _map[x, y];
@@ -248,19 +295,90 @@ namespace Tetris
 
                 //Touche A (rotation gauche)
                 case "a":
-                    switch(_formeActuelle)
+                    RotationPiece("gauche");
+                    break;
+
+                //Touche D (rotation droite)
+                case "d":
+                    RotationPiece("droite");
+                    break;
+            }
+        }
+        #endregion public methods
+
+        #region private methods
+        //Cette fonction permet de poser les pièces en bas
+        private void PoserPiece()
+        {
+            int x;
+            int y;
+
+            for(y = 0; y < 24; y++)
+            {
+                for(x = 0; x < 10; x++)
+                {
+                    switch(_map[x, y])
+                    {
+                        case 1:
+                        case 11:
+                            _map[x, y] = 21;
+                            break;
+
+                        case 2:
+                        case 12:
+                            _map[x, y] = 22;
+                            break;
+
+                        case 3:
+                        case 13:
+                            _map[x, y] = 23;
+                            break;
+
+                        case 4:
+                        case 14:
+                            _map[x, y] = 24;
+                            break;
+
+                        case 5:
+                        case 15:
+                            _map[x, y] = 25;
+                            break;
+
+                        case 6:
+                        case 16:
+                            _map[x, y] = 26;
+                            break;
+
+                        case 7:
+                        case 17:
+                            _map[x, y] = 27;
+                            break;
+                    }
+                }
+            }
+        }
+
+        //Rotation des pièces
+        private void RotationPiece(string direction)
+        {
+            int x;
+            int y;
+            switch (direction)
+            {
+                case "gauche":
+                    switch (_formeActuelle)
                     {
                         case "baton":
                             //Point de rotation = 11
 
 
                             //Check toutes la valeurs du tableau
-                            for(y = 0; y < 24; y++)
+                            for (y = 0; y < 24; y++)
                             {
-                                for(x = 0; x < 10; x++)
+                                for (x = 0; x < 10; x++)
                                 {
                                     //Lorsqu'un bloc est trouvé
-                                    if(_map[x, y] == 1)
+                                    if (_map[x, y] == 1)
                                     {
                                         _map[x, y] = 0;
 
@@ -330,7 +448,7 @@ namespace Tetris
                                             if (y == 23)
                                             {
                                                 //Le point de rotation se trouve un bloc plus loin
-                                                if(_map[x + 1, y] == 11)
+                                                if (_map[x + 1, y] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x + 2, y] = 0;
@@ -403,7 +521,7 @@ namespace Tetris
                                                     _map[x + 3, y + 1] = 1;
                                                 }
                                                 //Le point de rotation se trouve deux blocs en dessous
-                                                else if(_map[x, y + 2] == 11)
+                                                else if (_map[x, y + 2] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x, y + 1] = 0;
@@ -416,7 +534,7 @@ namespace Tetris
                                                     _map[x + 3, y + 2] = 1;
                                                 }
                                                 //Le point de rotation se trouve un bloc plus loin
-                                                else if(_map[x + 1, y] == 11)
+                                                else if (_map[x + 1, y] == 11)
                                                 {
                                                     //Suppression des anciennes position
                                                     _map[x + 2, y] = 0;
@@ -498,7 +616,7 @@ namespace Tetris
                                             else
                                             {
                                                 //Le point de rotation se trouve un bloc plus loin
-                                                if(_map[x + 1, y] == 11)
+                                                if (_map[x + 1, y] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x + 2, y] = 0;
@@ -510,7 +628,7 @@ namespace Tetris
                                                     _map[x + 1, y - 2] = 1;
                                                 }
                                                 //Le point de rotation se trouve deux blocs plus loin
-                                                else if(_map[x + 2, y] == 11)
+                                                else if (_map[x + 2, y] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x + 1, y] = 0;
@@ -522,7 +640,7 @@ namespace Tetris
                                                     _map[x + 2, y - 1] = 1;
                                                 }
                                                 //Le point de rotation se trouve un bloc en dessous
-                                                else if(_map[x, y + 1] == 11)
+                                                else if (_map[x, y + 1] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x, y + 2] = 0;
@@ -534,7 +652,7 @@ namespace Tetris
                                                     _map[x + 2, y + 1] = 1;
                                                 }
                                                 //Le point de rotation se trouve deux blocs en dessous
-                                                else if(_map[x, y + 2] == 11)
+                                                else if (_map[x, y + 2] == 11)
                                                 {
                                                     //Suppression des anciennes positions
                                                     _map[x, y + 1] = 0;
@@ -557,11 +675,14 @@ namespace Tetris
                     }
                     break;
 
-                //Touche D (rotation droite)
-                case "d":
+                case "droite":
                     switch (_formeActuelle)
                     {
                         case "baton":
+                            //Point de rotation = 11
+
+
+                            //Check toutes la valeurs du tableau
                             for (y = 0; y < 24; y++)
                             {
                                 for (x = 0; x < 10; x++)
@@ -864,10 +985,8 @@ namespace Tetris
                     }
                     break;
             }
+            
         }
-        #endregion public methods
-
-        #region private methods
         #endregion private methods
     }
 }

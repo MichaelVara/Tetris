@@ -74,6 +74,38 @@ namespace Tetris
         #region private methods
         private string NextForme()
         {
+            //On cache la forme précédente
+            switch (_nextForme)
+            {
+                case "baton":
+                    this.ptbNextBaton.Hide();
+                    break;
+
+                case "cube":
+                    this.ptbNextCube.Hide();
+                    break;
+
+                case "l1":
+                    this.ptbNextL1.Hide();
+                    break;
+
+                case "l2":
+                    this.ptbNextL2.Hide();
+                    break;
+
+                case "s":
+                    this.ptbNextS.Hide();
+                    break;
+
+                case "t":
+                    this.ptbNextT.Hide();
+                    break;
+
+                case "z":
+                    this.ptbNextZ.Hide();
+                    break;
+            }
+
             //Random parmis toutes les formes dispo
             _forme f = (_forme)(new Random()).Next(0, 7);
 
@@ -139,6 +171,16 @@ namespace Tetris
         //Dessine la forme actuel
         private void DessinerForme()
         {
+            //On vérifie s'il y a besoin d'une nouvelle forme
+            if (_gestionforme.nouvellePiece())
+            {
+
+                _gestionforme.NouvelleForme(_nextForme);
+
+                _nextForme = NextForme();
+            }
+
+
             int x;
             int y;
 
@@ -155,54 +197,44 @@ namespace Tetris
                         switch (_gestionforme.map()[x,y])
                         {
                             case 1:
+                            case 11:
+                            case 21:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
                                 break;
 
                             case 2:
+                            case 12:
+                            case 22:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksCube;
                                 break;
 
                             case 3:
+                            case 13:
+                            case 23:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL1;
                                 break;
 
                             case 4:
+                            case 14:
+                            case 24:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL2;
                                 break;
 
                             case 5:
+                            case 15:
+                            case 25:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksS;
                                 break;
 
                             case 6:
+                            case 16:
+                            case 26:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksT;
                                 break;
 
                             case 7:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
-                                break;
-
-                            case 11:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksBaton;
-                                break;
-
-                            case 13:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL1;
-                                break;
-
-                            case 14:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksL2;
-                                break;
-
-                            case 15:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksS;
-                                break;
-
-                            case 16:
-                                _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksT;
-                                break;
-
                             case 17:
+                            case 27:
                                 _map[x, y - 4].Image = Tetris.Properties.Resources.TetrisBlocksZ;
                                 break;
                         }
