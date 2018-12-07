@@ -172,7 +172,7 @@ namespace Tetris
                             //Si bloc coller au bord droite de la map
                             if (_map[x, y] > 0 && _map[x, y] < 20)
                             {
-                                if(y == 23)
+                                if(x == 9)
                                 {
                                     ok = false;
                                 }
