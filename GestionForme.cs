@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace Tetris
 {
-    class GestionForme
+    public class GestionForme
     {
         #region private attributes
         private string _formeActuelle;
         private int[,] _map = new int[10, 24];
         private bool _nouvellePiece = false;
+
+        private FormeBaton _baton;
+        private FormeCube _cube;
+        private FormeL1 _l1;
+        private FormeL2 _l2;
+        private FormeS _s;
+        private FormeT _t;
+        private FormeZ _z;
         #endregion private attributes
 
         #region constructors
@@ -29,6 +37,14 @@ namespace Tetris
                     _map[x, y] = 0;
                 }
             }
+
+            _baton = new FormeBaton();
+            _cube = new FormeCube();
+            _l1 = new FormeL1();
+            _l2 = new FormeL2();
+            _s = new FormeS();
+            _t = new FormeT();
+            _z = new FormeZ();
         }
         #endregion constructors
 
@@ -58,52 +74,31 @@ namespace Tetris
             switch (forme)
             {
                 case "baton":
-                    _map[3, 7] = 1;
-                    _map[4, 7] = 11;
-                    _map[5, 7] = 1;
-                    _map[6, 7] = 1;
+                    _map = _baton.Initialise(_map);
                     break;
 
                 case "cube":
-                    _map[4, 6] = 2;
-                    _map[5, 6] = 2;
-                    _map[4, 7] = 2;
-                    _map[5, 7] = 2;
+                    _cube.Initialise(_map);
                     break;
 
                 case "l1":
-                    _map[4, 7] = 3;
-                    _map[5, 7] = 13;
-                    _map[6, 7] = 3;
-                    _map[6, 6] = 3;
+                    _l1.Initialise(_map);
                     break;
 
                 case "l2":
-                    _map[4, 6] = 4;
-                    _map[4, 7] = 4;
-                    _map[5, 7] = 14;
-                    _map[6, 7] = 4;
+                    _l2.Initialise(_map);
                     break;
 
                 case "s":
-                    _map[4, 7] = 5;
-                    _map[5, 7] = 5;
-                    _map[5, 6] = 15;
-                    _map[6, 6] = 5;
+                    _s.Initialise(_map);
                     break;
 
                 case "t":
-                    _map[4, 7] = 6;
-                    _map[5, 7] = 16;
-                    _map[5, 6] = 6;
-                    _map[6, 7] = 6;
+                    _t.Initialise(_map);
                     break;
 
                 case "z":
-                    _map[4, 6] = 7;
-                    _map[5, 6] = 7;
-                    _map[5, 7] = 17;
-                    _map[6, 7] = 7;
+                    _z.Initialise(_map);
                     break;
             }
             //On n'a plus besoin d'une nouvelle pièce
@@ -295,12 +290,62 @@ namespace Tetris
 
                 //Touche A (rotation gauche)
                 case "a":
-                    RotationPiece("gauche");
+                    switch(_formeActuelle)
+                    {
+                        case "baton":
+                            _map = _baton.RotationGauche(_map);
+                            break;
+
+                        case "l1":
+                            _map = _l1.RotationGauche(_map);
+                            break;
+
+                        case "l2":
+                            _map = _l2.RotationGauche(_map);
+                            break;
+
+                        case "s":
+                            _map = _s.RotationGauche(_map);
+                            break;
+
+                        case "t":
+                            _map = _t.RotationGauche(_map);
+                            break;
+
+                        case "z":
+                            _map = _z.RotationGauche(_map);
+                            break;
+                    }
                     break;
 
                 //Touche D (rotation droite)
                 case "d":
-                    RotationPiece("droite");
+                    switch(_formeActuelle)
+                    {
+                        case "baton":
+                            _map = _baton.RotationDroite(_map);
+                            break;
+
+                        case "l1":
+                            _map = _l1.RotationDroite(_map);
+                            break;
+
+                        case "l2":
+                            _map = _l2.RotationDroite(_map);
+                            break;
+
+                        case "s":
+                            _map = _s.RotationDroite(_map);
+                            break;
+
+                        case "t":
+                            _map = _t.RotationDroite(_map);
+                            break;
+
+                        case "z":
+                            _map = _z.RotationDroite(_map);
+                            break;
+                    }
                     break;
             }
         }
@@ -356,636 +401,6 @@ namespace Tetris
                     }
                 }
             }
-        }
-
-        //Rotation des pièces
-        private void RotationPiece(string direction)
-        {
-            int x;
-            int y;
-            switch (direction)
-            {
-                case "gauche":
-                    switch (_formeActuelle)
-                    {
-                        case "baton":
-                            //Point de rotation = 11
-
-
-                            //Check toutes la valeurs du tableau
-                            for (y = 0; y < 24; y++)
-                            {
-                                for (x = 0; x < 10; x++)
-                                {
-                                    //Lorsqu'un bloc est trouvé
-                                    if (_map[x, y] == 1)
-                                    {
-                                        _map[x, y] = 0;
-
-                                        //Si bloc collé au bord droite (le baton est verticale dans ce cas)
-                                        if (x == 9)
-                                        {
-                                            //Le point de rotation se trouve un bloc en dessous
-                                            if (_map[x, y + 1] == 11)
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 2] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x, y + 1] = 1;
-                                                _map[x - 1, y + 1] = 1;
-                                                _map[x - 2, y + 1] = 11;
-                                                _map[x - 3, y + 1] = 1;
-                                            }
-                                            //Le point de rotation se trouve deux blocs en dessous
-                                            else
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x, y + 2] = 1;
-                                                _map[x - 1, y + 2] = 11;
-                                                _map[x - 2, y + 2] = 1;
-                                                _map[x - 3, y + 2] = 1;
-                                            }
-                                        }
-                                        //Si bloc à une case du bord droite (le baton est verticale dans ce cas)
-                                        else if (x == 8)
-                                        {
-                                            //Le point de rotation se trouve un bloc en dessous
-                                            if (_map[x, y + 1] == 11)
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 2] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x + 1, y + 1] = 1;
-                                                _map[x, y + 1] = 1;
-                                                _map[x - 1, y + 1] = 11;
-                                                _map[x - 2, y + 1] = 1;
-                                            }
-                                            //Le point de rotation se trouve deux blocs en dessous
-                                            else
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x + 1, y + 2] = 1;
-                                                _map[x, y + 2] = 11;
-                                                _map[x - 1, y + 2] = 1;
-                                                _map[x - 2, y + 2] = 1;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            //Si bloc collé en bas (le baton est horizontale dans ce cas)
-                                            if (y == 23)
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y] = 1;
-                                                    _map[x + 1, y - 1] = 11;
-                                                    _map[x + 1, y - 2] = 1;
-                                                    _map[x + 1, y - 3] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                    _map[x + 2, y - 2] = 11;
-                                                    _map[x + 2, y - 3] = 1;
-                                                }
-                                            }
-                                            //Si bloc à une case du bas (le baton est horizontale dans ce cas)
-                                            else if (y == 22)
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y] = 11;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y - 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y] = 1;
-                                                    _map[x + 2, y - 1] = 11;
-                                                    _map[x + 2, y - 2] = 1;
-                                                }
-                                            }
-                                            //Si le bloc est collé au bord gauche
-                                            else if (x == 0)
-                                            {
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x, y + 1] = 1;
-                                                    _map[x + 1, y + 1] = 11;
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 3, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x, y + 2] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                    _map[x + 2, y + 2] = 11;
-                                                    _map[x + 3, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                else if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y - 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y + 2] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                            }
-                                            //Si le bloc est collé au bord gauche
-                                            else if (x == 1)
-                                            {
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 1] = 1;
-                                                    _map[x, y + 1] = 11;
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 2, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 2] = 1;
-                                                    _map[x, y + 2] = 1;
-                                                    _map[x + 1, y + 2] = 11;
-                                                    _map[x + 2, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                else if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y - 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y + 2] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                            }
-                                            //On ne sait pas si le baton est vertical ou horizontale
-                                            else
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y - 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else if (_map[x + 2, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 2] = 1;
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                else if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 1] = 1;
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 2, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 2, y + 2] = 1;
-                                                    _map[x - 1, y + 2] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                }
-                                            }
-                                        }
-                                        //On sort de la boucle
-                                        x = 10;
-                                        y = 24;
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                    break;
-
-                case "droite":
-                    switch (_formeActuelle)
-                    {
-                        case "baton":
-                            //Point de rotation = 11
-
-
-                            //Check toutes la valeurs du tableau
-                            for (y = 0; y < 24; y++)
-                            {
-                                for (x = 0; x < 10; x++)
-                                {
-                                    //Lorsqu'un bloc est trouvé
-                                    if (_map[x, y] == 1)
-                                    {
-                                        _map[x, y] = 0;
-
-                                        //Si bloc collé au bord droite (le baton est verticale dans ce cas)
-                                        if (x == 9)
-                                        {
-                                            //Le point de rotation se trouve un bloc en dessous
-                                            if (_map[x, y + 1] == 11)
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 2] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x, y + 1] = 1;
-                                                _map[x - 1, y + 1] = 11;
-                                                _map[x - 2, y + 1] = 1;
-                                                _map[x - 3, y + 1] = 1;
-                                            }
-                                            //Le point de rotation se trouve deux blocs en dessous
-                                            else
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x, y + 2] = 1;
-                                                _map[x - 1, y + 2] = 1;
-                                                _map[x - 2, y + 2] = 11;
-                                                _map[x - 3, y + 2] = 1;
-                                            }
-                                        }
-                                        //Si bloc à une case du bord droite (le baton est verticale dans ce cas)
-                                        else if (x == 8)
-                                        {
-                                            //Le point de rotation se trouve un bloc en dessous
-                                            if (_map[x, y + 1] == 11)
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 2] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x + 1, y + 1] = 1;
-                                                _map[x, y + 1] = 11;
-                                                _map[x - 1, y + 1] = 1;
-                                                _map[x - 2, y + 1] = 1;
-                                            }
-                                            //Le point de rotation se trouve deux blocs en dessous
-                                            else
-                                            {
-                                                //Suppression des anciennes positions
-                                                _map[x, y + 1] = 0;
-                                                _map[x, y + 3] = 0;
-
-                                                //Initialisation des nouvelles positions
-                                                _map[x + 1, y + 2] = 1;
-                                                _map[x, y + 2] = 1;
-                                                _map[x - 1, y + 2] = 11;
-                                                _map[x - 2, y + 2] = 1;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            //Si bloc collé en bas (le baton est horizontale dans ce cas)
-                                            if (y == 23)
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y - 2] = 11;
-                                                    _map[x + 1, y - 3] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y] = 1;
-                                                    _map[x + 2, y - 1] = 11;
-                                                    _map[x + 2, y - 2] = 1;
-                                                    _map[x + 2, y - 3] = 1;
-                                                }
-                                            }
-                                            //Si bloc à une case du bas (le baton est horizontale dans ce cas)
-                                            else if (y == 22)
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y] = 1;
-                                                    _map[x + 1, y - 1] = 11;
-                                                    _map[x + 1, y - 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y] = 11;
-                                                    _map[x + 2, y - 1] = 1;
-                                                    _map[x + 2, y - 2] = 1;
-                                                }
-                                            }
-                                            //Si le bloc est collé au bord gauche
-                                            else if (x == 0)
-                                            {
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x, y + 1] = 1;
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 2, y + 1] = 11;
-                                                    _map[x + 3, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x, y + 2] = 1;
-                                                    _map[x + 1, y + 2] = 11;
-                                                    _map[x + 2, y + 2] = 1;
-                                                    _map[x + 3, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                else if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y - 2] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                            }
-                                            //Si le bloc est collé au bord gauche
-                                            else if (x == 1)
-                                            {
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 1] = 1;
-                                                    _map[x, y + 1] = 1;
-                                                    _map[x + 1, y + 1] = 11;
-                                                    _map[x + 2, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 2] = 1;
-                                                    _map[x, y + 2] = 11;
-                                                    _map[x + 1, y + 2] = 1;
-                                                    _map[x + 2, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                else if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else
-                                                {
-                                                    //Suppression des anciennes position
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y - 2] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                            }
-                                            //On ne sait pas si le baton est vertical ou horizontale
-                                            else
-                                            {
-                                                //Le point de rotation se trouve un bloc plus loin
-                                                if (_map[x + 1, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 2, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x + 1, y - 1] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs plus loin
-                                                else if (_map[x + 2, y] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x + 1, y] = 0;
-                                                    _map[x + 3, y] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y - 2] = 1;
-                                                    _map[x + 2, y + 1] = 1;
-                                                    _map[x + 2, y - 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve un bloc en dessous
-                                                else if (_map[x, y + 1] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 2] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x - 1, y + 1] = 1;
-                                                    _map[x + 1, y + 1] = 1;
-                                                    _map[x - 2, y + 1] = 1;
-                                                }
-                                                //Le point de rotation se trouve deux blocs en dessous
-                                                else if (_map[x, y + 2] == 11)
-                                                {
-                                                    //Suppression des anciennes positions
-                                                    _map[x, y + 1] = 0;
-                                                    _map[x, y + 3] = 0;
-
-                                                    //Initialisation des nouvelles positions
-                                                    _map[x + 2, y + 2] = 1;
-                                                    _map[x - 1, y + 2] = 1;
-                                                    _map[x + 1, y + 2] = 1;
-                                                }
-                                            }
-                                        }
-                                        //On sort de la boucle
-                                        x = 10;
-                                        y = 24;
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                    break;
-            }
-            
         }
         #endregion private methods
     }

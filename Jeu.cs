@@ -192,7 +192,6 @@ namespace Tetris
                     //S'il y a un bloc
                     if (_gestionforme.map()[x,y] > 0)
                     {
-
                         //Sélectionne le bon bloc en fonction de la forme
                         switch (_gestionforme.map()[x,y])
                         {
@@ -247,6 +246,7 @@ namespace Tetris
             }
         }
 
+        //Lorsque l'utilisateur appuie sur une touche
         private void frmJeu_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
